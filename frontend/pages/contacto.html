@@ -1,0 +1,73 @@
+<!-- Acerca del archivo -->
+<!--
+>   Autora: Karina Serrano
+>   Versión: 4
+>   Fecha: 16-05-2024
+>   El siguiente código representa un formulario de contacto, con 5 campos para
+    llenar, y con una validación para hacerlos obligatorios, hecha con Javascript
+-->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="Marvel icon" href="../assets/favicon/favicon.ico" type="image/x-icon">
+    <title>Contacto - MARVEL</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo_titulo">
+            <img src="../assets/images/marvel-logo-simple.png" height="50px">
+            <h1>FANSITE<br>DE CAC</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="#">Navegar</a>
+                    <ul class="submenu">
+                        <li><a href="./productos.html">Productos</a></li>
+                        <li><a href="./peliculas.html">Películas</a></li>
+                        <li><a href="./info.html">Nosotros</a></li>
+                        <li><a href=".contacto.html">Contacto</a>
+                    </ul>
+                </li>
+                <li><a href="./registro.html">Registro</a></li>
+                <li><a href="./login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <form name="contact" method="POST" netlify onsubmit="return validarCampos(); ">
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" ><br>
+            <label for="apellido">Apellido:</label><br>
+            <input type="text" id="apellido" name="apellido" ><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" ><br>
+            <label for="telefono" >Teléfono:</label><br>
+            <input type="tel" id="telefono" name="telefono" ><br>
+            <div class="consulta">
+                <h5>Tipo de consulta</h5><br>
+                <div class="checks">
+                    <div><input type="radio" name="consulta" value="consulta">Consulta</div>
+                    <div><input type="radio" name="consulta" value="compra" checked>Compra</div>
+                </div>  
+                <label>Mensaje: <textarea name="mensaje" placeholder="Mensaje"></textarea></label>             
+            </div>
+            <input type="submit" value="Enviar"><br>
+          </form>
+          <script src="../js/validar.js"></script>
+    </main>
+
+    <footer class="footer">
+        <p>Proyecto desarrollado por el grupo 5 de la comisión 24157</p>
+    </footer>
+    
+</body>
+
+</html>

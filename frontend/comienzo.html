@@ -1,0 +1,72 @@
+<!-- Acerca del archivo -->
+<!--
+>   Autores: integrantes del grupo 5 del curso Codo a Codo
+>   Versión: 4
+>   Fecha: 16-05-2024
+>   El siguiente código representa la primera página que el usuario encontraría al
+    abrir la página. Contiene información de algunos superhéroes, y botones con los
+    cuales es posible acceder a los demás archivos .html del proyecto
+-->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./assets/favicon/favicon.ico" type="image/x-icon">
+    <title>Inicio - MARVEL</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo_titulo">
+            <img src="./assets/images/marvel-logo-simple.png" height="50px">
+            <h1>FANSITE<br>DE CAC</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Inicio</a></li>
+                <li><a href="#">Navegar</a>
+                    <ul class="submenu"> <!-- Este es un submenú, que contiene los demás botones, aparte del de inicio -->
+                        <li><a href="./pages/productos.html">Productos</a></li>
+                        <li><a href="./pages/peliculas.html">Películas</a></li>
+                        <li><a href="./pages/info.html">Nosotros</a></li>
+                        <li><a href="./pages/contacto.html">Contacto</a>
+                    </ul>
+                </li>
+                <li><a href="./pages/login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="main">
+        <div class="historia_marvel">
+            <h2>Historia de Marvel Studios</h2>
+            <p>Marvel Studios es conocida por producir películas de superhéroes basadas en los personajes de Marvel
+                Comics. Fundada en 1993 como Marvel Films y renombrada como Marvel Studios en 1996, la compañía ha sido
+                responsable de crear el Universo Cinematográfico de Marvel (MCU), que incluye una serie interconectada
+                de películas y programas de televisión.</p>
+            <p>El MCU comenzó con la película "Iron Man" en 2008 y ha crecido para incluir múltiples fases, cada una con
+                su propia serie de películas que culminan en eventos épicos como "Avengers: Infinity War" y "Avengers:
+                Endgame". Marvel Studios ha revolucionado el género de superhéroes en el cine y ha ganado numerosos
+                premios y reconocimientos por su trabajo innovador.</p>
+        </div>
+       
+        <article>
+            <img src="./assets/images/heroes/iron_man.jpg" alt="iron man">
+            <img src="./assets/images/heroes/captain_america.jpg" alt="">
+            <img src="./assets/images/heroes/black_widow.jpg" alt="">
+            <img src="./assets/images/heroes/hulk.jpg" alt="">
+            <img src="./assets/images/heroes/wolverine.jpg" alt="">
+            <img src="./assets/images/heroes/spiderman.jpg" alt="">
+        </article>
+    </main>
+
+    <footer class="footer">
+        <p>Proyecto desarrollado por el grupo 5 de la comisión 24157</p>
+    </footer>
+
+</body>
+
+</html>

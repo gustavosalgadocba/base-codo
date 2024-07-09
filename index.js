@@ -1,76 +1,53 @@
-require('dotenv').config();
+/**
+ * El objetivo de este trabajo 
+ * es proporcionar una práctica introductoria 
+ * para el desarrollo de autientificación de usuarios 
+ * utilizando Node.js y los frameworks Express, Bcrypt y JsonWebToken.
+ * Aplicamos los siguientes pasos
+* 1- Diseñamos la estructura de carpetas
+ * 2- Inicializamos NPM: npm init -y
+ * 3- Instalamos las dependencias: npm i express bcryptjs jsonwebtoken
+ * 4- Configuramos el servidor en index.js
+ * 5- Configurar start
+ * 6- Para compatibilizar con un front de puerto 5000 importar cors
+ * 7- Instalamos cors - npm i cors
+ * 8- Instalamos dotenv - npm i dotenv
+ */
+// importamos express
 const express = require('express');
-const mysql = require('mysql');
 
+//instanciamos express
 const app = express();
-const port = 3000; // Puedes cambiar el puerto según sea necesario
 
-// Configuración de la conexión a la base de datos
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE
-});
+//importamos cors esto es para compatibiliazar los puertos del front con el back
+const cors = require('cors');
 
-// Conectar a la base de datos
-db.connect((err) => {
-    if (err) {
-        throw err;
-    }
-    console.log('Conectado a la base de datos MySQL');
-});
 
-// Middleware para procesar datos JSON
+
+//importamos un modulo propio que nos ayuda a autenticar rutas
+const authRoutes = require('./routes/authRoutes');
+
+//importamos el modulo dotenv
+const dotenv = require('dotenv');
+
+//inicializamos dotenv
+dotenv.config();
+
+// declaramos un puerto
+const port = process.env.port || 3001;
+
+//habilitamos cors
+app.use(cors());
+
+//gestion de json entrantes
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// Ruta para servir la página HTML estática
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
-});
+//declaracion de rutas principal
 
-// Rutas para las operaciones CRUD
-
-// Ruta para obtener todos los estudiantes
-app.get('/estudiantes', (req, res) => {
-    const sql = 'SELECT * FROM estudiantes';
-    db.query(sql, (err, result) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.status(200).json(result);
-        }
-    });
-});
-
-// Ruta para agregar un estudiante
-app.post('/estudiantes', (req, res) => {
-    const { nombre, edad, email } = req.body;
-    const sql = `INSERT INTO estudiantes (nombre, edad, email) VALUES (?, ?, ?)`;
-    db.query(sql, [nombre, edad, email], (err, result) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.status(201).json({ message: 'Estudiante agregado correctamente' });
-        }
-    });
-});
-
-// Ruta para eliminar un estudiante por ID
-app.delete('/estudiantes/:id', (req, res) => {
-    const id_estudiante = req.params.id;
-    const sql = `DELETE FROM estudiantes WHERE id_estudiante = ?`;
-    db.query(sql, [id_estudiante], (err, result) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.status(200).json({ message: 'Estudiante eliminado correctamente' });
-        }
-    });
-});
-
-// Iniciar el servidor
+app.use('/auth', authRoutes);
+//arrancamos el servidor
 app.listen(port, () => {
-    console.log(`Servidor escuchando en http://localhost:${port}`);
-});
+    console.log(`Servidor corriendo en el puerto ${port}`);
+});    
+
+//pasamos a configurar config.js en la carpeta config
